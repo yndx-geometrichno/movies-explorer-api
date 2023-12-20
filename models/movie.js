@@ -1,69 +1,53 @@
 const { Schema, model } = require("mongoose");
 const { isURL } = require("validator");
 
+// Правило для валидации URL
+const urlValidator = {
+  validator: (v) => isURL(v),
+  message: "Некорректный URL",
+}
+
+// Функция для создания сообщения об ошибке
+function getRequiredError(fieldName) {
+  return `Поле ${fieldName} является обязательным`
+}
+
 const movieSchema = new Schema(
   {
     country: {
       type: String,
-      required: {
-        value: true,
-        message: "Поле страна является обязательным",
-      },
+      required: [true, getRequiredError("страна")],
     },
     director: {
       type: String,
-      required: {
-        value: true,
-        message: "Поле режиссер является обязательным",
-      },
+      required: [true, getRequiredError("режиссер")],
     },
     duration: {
       type: Number,
-      required: {
-        value: true,
-        message: "Поле продолжительность является обязательным",
-      },
+      required: [true, getRequiredError("продолжительность")],
     },
     year: {
       type: Number,
-      required: {
-        value: true,
-        message: "Поле год является обязательным",
-      },
+      required: [true, getRequiredError("год")],
     },
     description: {
       type: String,
-      required: {
-        value: true,
-        message: "Поле описание является обязательным",
-      },
+      required: [true, getRequiredError("описание")],
     },
     image: {
       type: String,
-      validate: {
-        validator: (v) => isURL(v),
-        message: "Некорректный URL",
-      },
-      required: {
-        value: true,
-        message: "Поле постер является обязательным",
-      },
+      validate: urlValidator,
+      required: [true, getRequiredError("постер")],
     },
     trailerLink: {
       type: String,
-      validate: {
-        validator: (v) => isURL(v),
-        message: "Некорректный URL",
-      },
-      required: [true, "Поле трейлер является обязательным"],
+      validate: urlValidator,
+      required: [true, getRequiredError("трейлер")],
     },
     thumbnail: {
       type: String,
-      validate: {
-        validator: (v) => isURL(v),
-        message: "Некорректный URL",
-      },
-      required: [true, "Поле тамбнейл является обязательным"],
+      validate: urlValidator,
+      required: [true, getRequiredError("тамбнейл")],
     },
     owner: {
       type: Schema.Types.ObjectId,
@@ -72,24 +56,15 @@ const movieSchema = new Schema(
     },
     movieId: {
       type: Number,
-      required: {
-        value: true,
-        message: "Поле id фильма является обязательным",
-      },
+      required: [true, getRequiredError("id фильма")],
     },
     nameRu: {
       type: String,
-      required: {
-        value: true,
-        message: "Поле имя является обязательным",
-      },
+      required: [true, getRequiredError("имя")],
     },
     nameEng: {
       type: String,
-      required: {
-        value: true,
-        message: "Поле имя является обязательным",
-      },
+      required: [true, getRequiredError("имя")],
     },
   },
   {
@@ -97,5 +72,6 @@ const movieSchema = new Schema(
     timestamps: true,
   }
 );
+
 
 module.exports = model("movie", movieSchema);
