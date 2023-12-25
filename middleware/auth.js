@@ -3,8 +3,7 @@ const ApiError = require("../error/ApiError");
 
 module.exports = (req, res, next) => {
   const { token } = req.cookies;
-  // const { SECRET_KEY } = process.env;
-  const SECRET_KEY = "development-secret-key";
+  const { SECRET_KEY = "development-secret-key" } = process.env;
 
   if (!token) {
     return next(ApiError.unauthorized("User is unauthorized"));
@@ -19,7 +18,6 @@ module.exports = (req, res, next) => {
   }
 
   req.user = payload;
-  // req.user._id = jwt.decode(token, SECRET_KEY);
 
   return next();
 };

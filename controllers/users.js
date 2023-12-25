@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 const User = require("../models/user");
 const ApiError = require("../error/ApiError");
 
-const MONGO_DUPLICATE_ERROR_CODE = 11000;
-const SECRET_KEY = "development-secret-key"
+const { MONGO_DUPLICATE_ERROR_CODE = 11000 } = process.env;
+const { SECRET_KEY = "development-secret-key" } = process.env;
 
 const createUser = async (req, res, next) => {
   try {

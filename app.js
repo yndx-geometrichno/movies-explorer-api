@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
@@ -12,8 +13,8 @@ const router = require("./routes/index");
 const corsConfig = require("./utils/corsConfig");
 const rateLimitConfig = require("./utils/rateLimitConfig");
 
-const DB_PORT = 3000;
-const DB_URL = "mongodb://127.0.0.1:27017/bitfilmsdb";
+const { DB_PORT = 3000 } = process.env;
+const { DB_URL = "mongodb://127.0.0.1:27017/bitfilmsdb" } = process.env;
 
 const limiter = rateLimit(rateLimitConfig);
 
