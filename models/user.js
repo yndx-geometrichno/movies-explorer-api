@@ -32,9 +32,8 @@ const userSchema = new Schema(
   }
 );
 
-//  eslint-disable-next-line func-names
 userSchema.statics.findUserByCredentials = async function (email, password) {
-  const user = await this.findOne({ email }).select("+password");
+  const user = await this.findOne({ email }).select("+password").lean();
   if (!user) {
     return ApiError.unauthorized(wrongEmailOrPassword);
   }
@@ -42,6 +41,7 @@ userSchema.statics.findUserByCredentials = async function (email, password) {
     if (!matched) {
       return ApiError.unauthorized(wrongEmailOrPassword);
     }
+    delete user.password;
     return user;
   });
 };
