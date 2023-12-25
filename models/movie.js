@@ -1,16 +1,15 @@
 const { Schema, model } = require("mongoose");
 const { isURL } = require("validator");
+const {
+  incorrectUrl,
+  getRequiredError,
+} = require("../utils/messageServerResponse");
 
 // Правило для валидации URL
 const urlValidator = {
   validator: (v) => isURL(v),
-  message: "Некорректный URL",
-}
-
-// Функция для создания сообщения об ошибке
-function getRequiredError(fieldName) {
-  return `Поле ${fieldName} является обязательным`
-}
+  message: incorrectUrl,
+};
 
 const movieSchema = new Schema(
   {
@@ -72,6 +71,5 @@ const movieSchema = new Schema(
     timestamps: true,
   }
 );
-
 
 module.exports = model("movie", movieSchema);

@@ -9,22 +9,20 @@ const {
   userSignupValidation,
   userLoginValidation,
 } = require("../utils/validationRules");
-
-// router.get("/crash-test", () => {
-//   setTimeout(() => {
-//     throw new Error("Сервер сейчас упадет");
-//   }, 0);
-// });
+const {
+  logoutSuccess,
+  pageNotFound,
+} = require("../utils/messageServerResponse");
 
 router.post("/signup", celebrate(userSignupValidation), createUser);
 router.post("/signin", celebrate(userLoginValidation), login);
-router.post("/signout", (req, res) => {
-  res.clearCookie("token").send({ message: "Вы вышли из профиля" });
+router.post("/signout", auth, (req, res) => {
+  res.clearCookie("token").send({ message: logoutSuccess });
 });
 router.use("/users", auth, userRouter);
 router.use("/movies", auth, movieRouter);
 router.use("*", auth, (req, res, next) =>
-  next(ApiError.notFound("This page is not exist"))
+  next(ApiError.notFound(pageNotFound))
 );
 
 module.exports = router;
