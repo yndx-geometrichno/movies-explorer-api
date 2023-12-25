@@ -24,13 +24,7 @@ const createUser = async (req, res, next) => {
       password: hashPass,
     });
 
-    const userWithoutPassword = newUser.toObject({
-      transform: (doc, ret) => {
-        // eslint-disable-next-line no-param-reassign
-        delete ret.password;
-        return ret;
-      },
-    });
+    const userWithoutPassword = { ...newUser.toObject(), password: undefined };
 
     return res.status(201).send({ newUser: userWithoutPassword });
   } catch (err) {
