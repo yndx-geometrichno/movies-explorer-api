@@ -10,15 +10,12 @@ const errorHandler = require("./middleware/ErrorHandlingMiddleWare");
 
 const router = require("./routes/index");
 const corsConfig = require("./utils/corsConfig");
+const rateLimitConfig = require("./utils/rateLimitConfig");
 
 const DB_PORT = 3000;
 const DB_URL = "mongodb://127.0.0.1:27017/bitfilmsdb";
 
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  limit: 10000, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
-  message: "Too many requests from this IP, please try again later.",
-});
+const limiter = rateLimit(rateLimitConfig);
 
 const app = express();
 
