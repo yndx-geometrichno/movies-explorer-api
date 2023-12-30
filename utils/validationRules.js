@@ -33,7 +33,7 @@ const updateUserInfoValidation = {
 
 const movieIdValidation = {
   params: Joi.object().keys({
-    movieId: Joi.string().hex().length(24),
+    movieId: Joi.string().hex().length(24).required(),
   }),
 };
 
@@ -46,8 +46,8 @@ const createMovieValidation = {
     description: Joi.string().required(),
     image: Joi.string().required().regex(URL_REGEX),
     trailerLink: Joi.string().required().regex(URL_REGEX),
-    thumbnail: Joi.number().required(),
-    movieId: Joi.string().hex().length(24),
+    thumbnail: Joi.string().required().regex(URL_REGEX),
+    movieId: Joi.string().hex().length(24).required(),
     nameRu: Joi.string().required(),
     nameEng: Joi.string().required(),
   }),
