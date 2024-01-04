@@ -7,6 +7,7 @@ const userIdNotFound = "Пользователь по указанному _id �
 const invalidUserDataUpdate =
   "Переданы некорректные данные при обновлении почты или пароля.";
 const logoutSuccess = "Вы вышли из профиля";
+const userUnauthorized = "Пользователь не авторизован";
 
 // Сообщения об операциях с Movie
 const invalidMovieData = "Переданы некорректные данные при создании фильма";
@@ -33,6 +34,7 @@ module.exports = {
   userIdNotFound,
   invalidUserDataUpdate,
   logoutSuccess,
+  userUnauthorized,
   invalidMovieData,
   movieIdNotFound,
   differentOwnerMovieDelete,
