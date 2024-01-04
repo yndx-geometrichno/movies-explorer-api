@@ -90,6 +90,9 @@ const updateUserInfo = async (req, res, next) => {
     if (err instanceof mongoose.Error.ValidationError) {
       return next(ApiError.invalid(invalidUserDataUpdate));
     }
+    if (err.code === MONGO_DUPLICATE_ERROR_CODE) {
+      return next(ApiError.conflict(emailAlreadyExist));
+    }
     return next(err);
   }
 };
