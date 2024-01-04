@@ -27,7 +27,7 @@ const createMovie = async (req, res, next) => {
       year,
       description,
       image,
-      trailer,
+      trailerLink,
       nameRU,
       nameEN,
       thumbnail,
@@ -40,7 +40,7 @@ const createMovie = async (req, res, next) => {
       year,
       description,
       image,
-      trailer,
+      trailerLink,
       nameRU,
       nameEN,
       thumbnail,
@@ -49,6 +49,7 @@ const createMovie = async (req, res, next) => {
     });
     return res.status(201).send(await newMovie.save());
   } catch (err) {
+    console.log(err);
     if (err instanceof mongoose.Error.ValidationError) {
       return next(ApiError.invalid(invalidMovieData));
     }

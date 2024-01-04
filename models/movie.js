@@ -57,11 +57,11 @@ const movieSchema = new Schema(
       type: Number,
       required: [true, getRequiredError("id фильма")],
     },
-    nameRu: {
+    nameRU: {
       type: String,
       required: [true, getRequiredError("имя")],
     },
-    nameEng: {
+    nameEN: {
       type: String,
       required: [true, getRequiredError("имя")],
     },
