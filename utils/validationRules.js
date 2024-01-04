@@ -48,8 +48,8 @@ const createMovieValidation = {
     trailerLink: Joi.string().required().regex(URL_REGEX),
     thumbnail: Joi.string().required().regex(URL_REGEX),
     movieId: Joi.string().hex().length(24).required(),
-    nameRu: Joi.string().required(),
-    nameEng: Joi.string().required(),
+    nameRU: Joi.string().required(),
+    nameEN: Joi.string().required(),
   }),
 };
 
