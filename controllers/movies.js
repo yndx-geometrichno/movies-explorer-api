@@ -11,8 +11,11 @@ const {
 
 const getMovies = async (req, res, next) => {
   try {
-    const movies = await Movie.find({});
-    return res.send(movies);
+    const { _id } = req.user;
+    console.log(_id)
+    const savedMovies = await Movie.find({ _id });
+    console.log(savedMovies)
+    return res.send(savedMovies);
   } catch (err) {
     return next(err);
   }
