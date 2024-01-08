@@ -1,3 +1,11 @@
+const {
+  invalidErrCode,
+  unauthorizedErrCode,
+  forbiddenErrCode,
+  notFoundErrCode,
+  conflictErrCode
+} = require('../utils/messageServerResponse')
+
 class ApiError extends Error {
   constructor(status, message) {
     super(message);
@@ -5,23 +13,23 @@ class ApiError extends Error {
   }
 
   static invalid(message) {
-    return new ApiError(400, message);
+    return new ApiError(invalidErrCode, message);
   }
 
   static unauthorized(message) {
-    return new ApiError(401, message);
+    return new ApiError(unauthorizedErrCode, message);
   }
 
   static forbidden(message) {
-    return new ApiError(403, message);
+    return new ApiError(forbiddenErrCode, message);
   }
 
   static notFound(message) {
-    return new ApiError(404, message);
+    return new ApiError(notFoundErrCode, message);
   }
 
   static conflict(message) {
-    return new ApiError(409, message);
+    return new ApiError(conflictErrCode, message);
   }
 }
 

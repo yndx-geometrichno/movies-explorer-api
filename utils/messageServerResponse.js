@@ -22,6 +22,13 @@ const serverSideError = "Unexpected server side error";
 
 const incorrectUrl = "Некорректный URL";
 
+const invalidErrCode = 400;
+const unauthorizedErrCode = 401;
+const forbiddenErrCode = 403;
+const notFoundErrCode = 404;
+const conflictErrCode = 409;
+
+
 // Функция для создания сообщения об ошибке в данных фильмов
 function getRequiredError(fieldName) {
   return `Поле ${fieldName} является обязательным`;
@@ -44,4 +51,9 @@ module.exports = {
   serverSideError,
   incorrectUrl,
   getRequiredError,
+  invalidErrCode,
+  unauthorizedErrCode,
+  forbiddenErrCode,
+  notFoundErrCode,
+  conflictErrCode
 };
